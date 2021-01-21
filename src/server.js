@@ -2,10 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
-const env = require("dotenv").config;
-const port = process.env.PORT || 9000;
+const env = require("dotenv");
 const cors = require("cors");
-
+env.config();
 app.use(express.json());
 
 //routes
@@ -43,6 +42,6 @@ app.use("/api", initialDataRoutes);
 app.use("/api", pageRoutes);
 app.use("/api", addressRoutes);
 app.use("/api", orderRoutes);
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
